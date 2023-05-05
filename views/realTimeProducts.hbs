@@ -1,0 +1,72 @@
+<h1 class="text-danger text-center">Add Item</h1>
+<br>
+
+<form id="productForm" class="h-2 p-5" action="/api/productos" method="post" name="productos">>
+
+  <div class="form-group ">
+    <label for="titulo"><b>Title</b></label>
+    <input type="text" placeholder="Fender American Stratocaster" id="titulo" name="titulo" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="precio"><b>Price</b></label>
+    <input type="number" placeholder="899.99" id="precio" name="precio" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="descripcion"><b>Descripcion</b></label>
+    <input type="text" placeholder="Guitarra electrica" id="descripcion" name="descripcion" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="code"><b>Code</b></label>
+    <input type="text" placeholder="abc005" id="code" name="code" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="stock"><b>Stock</b></label>
+    <input type="number" placeholder="50" id="stock" name="stock" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="thumbnail"><b>thumbnail</label>
+    <input type="text" placeholder="https://muzikercdn.com/uploads/products/789/78991/main_9a486311.jpg" id="thumbnail" name="thumbnail" class="form-control">
+  </div>
+
+  <button class="btn btn-danger mt-3">Add</button>
+
+</form>
+
+<h1 class="text-center">Productos</h1>
+<div class="entry">
+{{#if productos}}
+<div class="  p-1 border border-dark rounded">
+<table class="  table table-resposive table-info">
+    <thead  class="thead-dark">
+        <tr>
+        <th scope="col">id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Stock</th>
+        <th scope="col">Imagen</th>
+        </tr>
+    </thead>
+    <tbody id="prodDisplay">
+        {{#each productos}}
+            <tr class="">
+                <th scope="row">{{ this.id }}</th>
+                <td>{{ this.titulo }}</td>
+                <td>{{ this.precio }}</td>
+                <td>{{ this.stock }}</td>
+                <td><img src="{{ this.thumbnail }}" width="50"></td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{else}}
+    <br>
+    <h3> No hay ningún producto agregado. </h3>
+{{/if}}
+</div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="public\js\main.js"></script>
